@@ -1,8 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@0,300..900;1,300..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@1,300..900&family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
-
 @import "tailwindcss";
 
+.logo-text {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;       
+  font-size: 1.75rem;    
+  color: #27aa10;         
+  letter-spacing: 1px;   
+}
 header{
   font-family: "Playfair Display SC", serif;
 }
@@ -10,6 +16,6 @@ header{
   font-family:"Epunda Slab", serif;
 }
 @theme {
-  --color-primary: #4fbf8b;
-  --color-primary-dull: #44ae7c;
+  --color-primary: #27aa10;
+  --color-primary-bright: #38bb04;
 }

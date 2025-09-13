@@ -1,6 +1,6 @@
 import React from 'react'
 import { CCarousel, CCarouselItem, CImage } from '@coreui/react'
-
+import { Link } from 'react-router-dom'
 const MainBanner = () => {
   return (
     <div>
@@ -65,13 +65,32 @@ const MainBanner = () => {
       </CCarousel>
 
       <div className="text-center py-10 bg-gradient-to-r from-green-50 via-white to-green-50">
-        <h2 className="text-2xl md:text-3xl font-semibold text-green-800 tracking-wide">
-          "Shop green, live clean — fresh choices for a sustainable tomorrow."
-        </h2>
-        <p className="mt-3 text-gray-600 text-base md:text-lg">
-          Discover eco-friendly groceries that care for you and the planet 🌍
-        </p>
-      </div>
+  <h2 className="text-2xl md:text-3xl font-semibold text-green-800 tracking-wide">
+    "Shop green, live clean — fresh choices for a sustainable tomorrow."
+  </h2>
+  <p className="mt-3 text-gray-600 text-base md:text-lg">
+    Discover eco-friendly groceries that care for you and the planet 🌍
+  </p>
+
+  <div className="mt-6 flex items-center justify-center gap-4">
+    {/* Filled green button */}
+    <Link
+      to="/products"
+      className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-md text-lg font-medium transition no-underline"
+    >
+      Shop now
+    </Link>
+
+    {/* Outlined box button for Explore Deals */}
+    <Link
+      to="/products"
+      className="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-md text-lg font-medium inline-flex items-center gap-2 transition no-underline visited:no-underline"
+    >
+      <span>Explore deals</span>
+      <span aria-hidden="true">→</span>
+    </Link>
+  </div>
+</div>
     </div>
   )
 }

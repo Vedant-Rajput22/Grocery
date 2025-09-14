@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import logo from '../assets/logo.svg'
 import { useAppContext } from '../context/AppContext'
@@ -6,13 +6,20 @@ import { useAppContext } from '../context/AppContext'
 const Navbar = () => {
   const [open, setOpen] = React.useState(false)
   const [profileDropdown, setProfileDropdown] = React.useState(false)
-  const { user, setUser, setShowUserLogin, navigate } = useAppContext();
+  const { user, setUser, setShowUserLogin, navigate, setSearchQuery, searchQuery } = useAppContext();
 
   const logout = () => {
     setUser(null);
     navigate('/');
     setProfileDropdown(false);
   }
+
+  useEffect(()=>{
+    if(searchQuery.lenth > 0){
+      navigate("/products")
+    }
+  },[searchQuery])
+
 
   const linkCls =
     "text-xl no-underline visited:no-underline hover:no-underline focus:no-underline active:no-underline " +
@@ -48,6 +55,7 @@ const Navbar = () => {
           <input
             className="py-1.5 w-48 bg-transparent outline-none placeholder-gray-500"
             type="text"
+            onChange={(e)=>setSearchQuery(e.target.value)}
             placeholder="Search products"
             aria-label="Search products"
           />

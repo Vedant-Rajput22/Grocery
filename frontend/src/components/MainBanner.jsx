@@ -1,6 +1,7 @@
 import React from 'react'
 import { CCarousel, CCarouselItem, CImage } from '@coreui/react'
 import { Link } from 'react-router-dom'
+import whiteArrow from "/src/assets/white_arrow_icon.svg";
 const MainBanner = () => {
   return (
     <div>

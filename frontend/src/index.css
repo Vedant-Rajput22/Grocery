@@ -13,6 +13,7 @@
   --color-bg: #ffffff;
 }
 
+
 /* Typography */
 .logo-text {
   font-family: "Playfair Display", serif;
@@ -34,3 +35,10 @@ a:visited {
   color: inherit; 
   text-decoration: none !important;
 }
+/* Make ProductCard slightly narrower ONLY inside BestSeller */
+.bestseller-grid .force-compact > div {
+  min-width: 10rem !important;  /* adjust to 10.5rem or 11rem if you want larger */
+  max-width: 10rem !important;
+}
+
+

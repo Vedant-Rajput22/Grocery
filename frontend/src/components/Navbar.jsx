@@ -2,11 +2,13 @@ import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import logo from '../assets/logo.svg'
 import { useAppContext } from '../context/AppContext'
+import { ShoppingCart } from "lucide-react";
+
 
 const Navbar = () => {
   const [open, setOpen] = React.useState(false)
   const [profileDropdown, setProfileDropdown] = React.useState(false)
-  const { user, setUser, setShowUserLogin, navigate, setSearchQuery, searchQuery } = useAppContext();
+  const { user, setUser, setShowUserLogin, navigate, setSearchQuery, searchQuery , getCartCount } = useAppContext();
 
   const logout = () => {
     setUser(null);
@@ -64,7 +66,13 @@ const Navbar = () => {
             <path d="M9.141 11.738c2.729-1.136 4.001-4.224 2.841-6.898S7.67.921 4.942 2.057C2.211 3.193.94 6.281 2.1 8.955s4.312 3.92 7.041 2.783" stroke="#4b5563" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
-
+        {/* Cart Icon */}
+        <div onClick={()=>navigate("/cart")} className="relative cursor-pointer">
+          <ShoppingCart className="w-6 h-6 text-[var(--color-primary)]" strokeWidth={1.5} />
+          <span className="absolute -top-2 -right-3 text-xs text-white bg-[var(--color-primary)] w-[18px] h-[18px] rounded-full flex items-center justify-center">
+            { getCartCount() }
+          </span>
+        </div>
         {!user ? (
           <button
             onClick={() => setShowUserLogin(true)}
@@ -101,13 +109,23 @@ const Navbar = () => {
       </div>
 
       {/* Mobile menu button */}
-      <button onClick={() => setOpen(!open)} aria-label="Menu" className="sm:hidden">
+      <div className='flex items-center gap-6 sm:hidden'>
+        {/* Cart Icon */}
+        <div onClick={()=>navigate("/cart")} className="relative cursor-pointer">
+          <ShoppingCart className="w-6 h-6 text-[var(--color-primary)]" strokeWidth={1.5} />
+          <span className="absolute -top-2 -right-3 text-xs text-white bg-[var(--color-primary)] w-[18px] h-[18px] rounded-full flex items-center justify-center">
+            { getCartCount() }
+          </span>
+        </div>
+        <button onClick={() => setOpen(!open)} aria-label="Menu" className="">
         <svg width="21" height="15" viewBox="0 0 21 15" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="21" height="1.5" rx=".75" className="fill-[var(--color-primary)]" />
           <rect x="8" y="6" width="13" height="1.5" rx=".75" className="fill-[var(--color-primary)]" />
           <rect x="6" y="13" width="15" height="1.5" rx=".75" className="fill-[var(--color-primary)]" />
         </svg>
-      </button>
+        </button>
+      </div>
+      
 
       {open && (
         <div className="absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex flex-col items-start gap-2 px-5 text-sm md:hidden z-50">

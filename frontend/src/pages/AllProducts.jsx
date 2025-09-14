@@ -1,10 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useAppContext } from '../context/AppContext'
-import ProductCard from '../components/ProductCard.jsx' // ensure the .jsx if needed
+import ProductCard from '../components/ProductCard.jsx'
 
 const AllProducts = () => {
   const ctx = useAppContext?.()
-  // Guard the context itself
   const products = Array.isArray(ctx?.products) ? ctx.products : []
   const searchQuery = typeof ctx?.searchQuery === 'string' ? ctx.searchQuery : ''
 
@@ -33,14 +32,15 @@ const AllProducts = () => {
         <div className="w-16 h-0.5 bg-primary/40 rounded-full"></div>
       </div>
 
-      {/* Simple sanity info so you can see it’s not blank even if no products */}
       <div className="mt-2 text-sm text-gray-500">
         Showing {visible.length} of {filteredProducts.length} matches
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-6 lg:grid-cols-5 mt-6">
+      <div className="grid justify-items-center grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 mt-6 ">
         {visible.map((product, idx) => (
-          <ProductCard key={product?._id ?? idx} product={product} />
+          <div key={product?._id ?? idx} className="force-compact">
+            <ProductCard product={product} />
+          </div>
         ))}
       </div>
     </div>

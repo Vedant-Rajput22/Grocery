@@ -68,15 +68,15 @@ const Navbar = () => {
         </div>
         {/* Cart Icon */}
         <div onClick={()=>navigate("/cart")} className="relative cursor-pointer">
-          <ShoppingCart className="w-6 h-6 text-[var(--color-primary)]" strokeWidth={1.5} />
-          <span className="absolute -top-2 -right-3 text-xs text-white bg-[var(--color-primary)] w-[18px] h-[18px] rounded-full flex items-center justify-center">
+          <ShoppingCart className="w-6 h-6 text-[var(--color-green-600)]" strokeWidth={1.5} />
+          <span className="absolute -top-2 -right-3 text-xs text-white bg-[var(--color-green-600)] w-[18px] h-[18px] rounded-full flex items-center justify-center">
             { getCartCount() }
           </span>
         </div>
         {!user ? (
           <button
             onClick={() => setShowUserLogin(true)}
-            className="cursor-pointer px-8 py-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] transition text-white rounded-full text-lg"
+            className="cursor-pointer px-8 py-2 bg-[var(--color-green-600)] hover:bg-[var(--color-green-600-hover)] transition text-white rounded-full text-lg"
           >
             Login
           </button>
@@ -112,16 +112,16 @@ const Navbar = () => {
       <div className='flex items-center gap-6 sm:hidden'>
         {/* Cart Icon */}
         <div onClick={()=>navigate("/cart")} className="relative cursor-pointer">
-          <ShoppingCart className="w-6 h-6 text-[var(--color-primary)]" strokeWidth={1.5} />
-          <span className="absolute -top-2 -right-3 text-xs text-white bg-[var(--color-primary)] w-[18px] h-[18px] rounded-full flex items-center justify-center">
+          <ShoppingCart className="w-6 h-6 text-[var(--color-green-600)]" strokeWidth={1.5} />
+          <span className="absolute -top-2 -right-3 text-xs text-white bg-[var(--color-green-600)] w-[18px] h-[18px] rounded-full flex items-center justify-center">
             { getCartCount() }
           </span>
         </div>
         <button onClick={() => setOpen(!open)} aria-label="Menu" className="">
         <svg width="21" height="15" viewBox="0 0 21 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="21" height="1.5" rx=".75" className="fill-[var(--color-primary)]" />
-          <rect x="8" y="6" width="13" height="1.5" rx=".75" className="fill-[var(--color-primary)]" />
-          <rect x="6" y="13" width="15" height="1.5" rx=".75" className="fill-[var(--color-primary)]" />
+          <rect width="21" height="1.5" rx=".75" className="fill-[var(--color-green-600)]" />
+          <rect x="8" y="6" width="13" height="1.5" rx=".75" className="fill-[var(--color-green-600)]" />
+          <rect x="6" y="13" width="15" height="1.5" rx=".75" className="fill-[var(--color-green-600)]" />
         </svg>
         </button>
       </div>
@@ -150,14 +150,14 @@ const Navbar = () => {
                 setOpen(false);
                 setShowUserLogin(true);
               }}
-              className="cursor-pointer px-6 py-2 mt-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] transition text-white rounded-full text-lg"
+              className="cursor-pointer px-6 py-2 mt-2 bg-[var(--color-green-600)] hover:bg-[var(--color-green-600-hover)] transition text-white rounded-full text-lg"
             >
               Login
             </button>
           ) : (
             <button
               onClick={logout}
-              className="cursor-pointer px-6 py-2 mt-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] transition text-white rounded-full text-lg"
+              className="cursor-pointer px-6 py-2 mt-2 bg-[var(--color-green-600)] hover:bg-[var(--color-green-600-hover)] transition text-white rounded-full text-lg"
             >
               Logout
             </button>

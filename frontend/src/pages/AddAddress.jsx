@@ -4,7 +4,7 @@ import { useAppContext } from '../context/AppContext.jsx';
 import toast from 'react-hot-toast';
 
 const InputField = ({ type, placeholder, name, handleChange, address}) => (
-    <input className='w-full px-2 py-2.5 border border-gray-500/30 rounded outline-none text-gray-500 focus:border-primary transition'
+    <input className='w-full px-2 py-2.5 border border-gray-500/30 rounded outline-none text-gray-500 focus:border-green-600 transition'
         type={type} placeholder={placeholder} name={name} onChange={handleChange} value={address[name]} required />
 );
 
@@ -56,7 +56,7 @@ function AddAddress() {
   return (
     <div className='mt-12 pb-12'>
       <p className='text-2xl md:text-3xl text-gray-500'> Add Shipping 
-        <span className='font-semibold text-primary-dull'>{" "}Address</span>
+        <span className='font-semibold text-green-700'>{" "}Address</span>
       </p>
       <div className='flex flex-col-reverse md:flex-row justify-between mt-4'>
         <div className='flex-1 max-w-md'>
@@ -91,7 +91,7 @@ function AddAddress() {
                 <InputField handleChange={handleChange} address={address} name='phone' type='text'
                         placeholder='Phone' />
 
-                <button className='w-full mt-6 bg-primary text-white py-3 hover:bg-primary-dull transition cursor-pointer' >
+                <button className='w-full mt-6 bg-green-600 text-white py-3 hover:bg-green-700 transition cursor-pointer' >
                     SAVE ADDRESS
                 </button>
             </form>

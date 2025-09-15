@@ -111,7 +111,7 @@ const Cart = () => {
       <div className="flex-1 max-w-4xl">
         <h1 className="text-3xl font-medium mb-6">
           Shopping Cart{" "}
-          <span className="text-sm text-primary/60">{getCartCount()} Items</span>
+          <span className="text-sm text-green-600/60">{getCartCount()} Items</span>
         </h1>
 
         <div className="grid grid-cols-[2fr_1fr_1fr] text-gray-500 text-base font-medium pb-3">
@@ -190,7 +190,7 @@ const Cart = () => {
             navigate("/products");
             scrollTo(0, 0);
           }}
-          className="group cursor-pointer flex items-center mt-8 gap-2 text-primary font-medium"
+          className="group cursor-pointer flex items-center mt-8 gap-2 text-green-600 font-medium"
         >
           <img
             src={assets.arrow_right_icon_colored}
@@ -216,7 +216,7 @@ const Cart = () => {
             </p>
             <button
               onClick={() => setShowAddress(!showAddress)}
-              className="text-primary hover:underline cursor-pointer shrink-0"
+              className="text-green-600 hover:underline cursor-pointer shrink-0"
             >
               Change
             </button>
@@ -237,7 +237,7 @@ const Cart = () => {
                 ))}
                 <p
                   onClick={() => navigate("/add-address")}
-                  className="text-primary text-center cursor-pointer p-2 hover:bg-primary/10"
+                  className="text-green-600 text-center cursor-pointer p-2 hover:bg-green-600/10"
                 >
                   Add address
                 </p>
@@ -279,7 +279,7 @@ const Cart = () => {
 
         <button
           onClick={placeOrder}
-          className="w-full py-3 mt-6 cursor-pointer bg-[var(--color-primary)] text-white font-medium hover:bg-[var(--color-primary-hover)] transition rounded"
+          className="w-full py-3 mt-6 cursor-pointer bg-[var(--color-green-600)] text-white font-medium hover:bg-[var(--color-green-600-hover)] transition rounded"
         >
           {paymentOption === "COD" ? "Place Order" : "Proceed to Checkout"}
         </button>

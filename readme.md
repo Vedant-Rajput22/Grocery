@@ -197,34 +197,65 @@ The application will be available at `http://localhost:5173`.
 ---
 
 ## Folder Structure
+
 ```
-eco-grocery/
+grocery/
 ├── demo/
-│   ├── user-sign-up.png
 │   ├── add-address.png
-│   ├── shopping-cart.png
 │   ├── all-products.png
-│   ├── user-login.png
-│   ├── home-page-5.png
-│   ├── home-page-4.png
-│   ├── home-page-3.png
-│   ├── home-page-2.png
 │   ├── home-page-1.png
+│   ├── home-page-2.png
+│   ├── home-page-3.png
+│   ├── home-page-4.png
+│   ├── home-page-5.png
+│   ├── seller-add-product.png
 │   ├── seller-product-list.png
-│   └── seller-add-product.png
+│   ├── shopping-cart.png
+│   ├── user-login.png
+│   └── user-sign-up.png
+│
 ├── frontend/
 │   ├── public/
+│   │   └── vite.svg
 │   ├── src/
 │   │   ├── assets/
+│   │   │   ├── assets.js
+│   │   │   ├── (and 60+ other image/asset files...)
 │   │   ├── components/
+│   │   │   ├── BestSeller.jsx
+│   │   │   ├── BottomBanner.jsx
+│   │   │   ├── Categories.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── Login.jsx
+│   │   │   ├── MainBanner.jsx
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── NewsLetter.jsx
+│   │   │   ├── ProductCard.jsx
+│   │   │   └── seller/
+│   │   │       └── SellerLogin.jsx
 │   │   ├── context/
-│   │   ├── pages/
-│   │   ├── App.jsx
-│   │   ├── main.jsx
+│   │   │   └── AppContext.jsx
+│   │   └── pages/
+│   │       ├── AddAddress.jsx
+│   │       ├── AllProducts.jsx
+│   │       ├── Cart.jsx
+│   │       ├── Home.jsx
+│   │       ├── MyOrders.jsx
+│   │       ├── ProductCategory.jsx
+│   │       ├── ProductDetails.jsx
+│   │       └── seller/
+│   │           ├── AddProduct.jsx
+│   │           ├── Orders.jsx
+│   │           ├── ProductList.jsx
+│   │           └── SellerLayout.jsx
 │   ├── .gitignore
+│   ├── eslint.config.js
 │   ├── index.html
+│   ├── package-lock.json
 │   ├── package.json
+│   ├── README.md
 │   └── vite.config.js
+│
 └── server/
     ├── configs/
     │   ├── cloudinary.js
@@ -253,6 +284,7 @@ eco-grocery/
     │   ├── sellerRoute.js
     │   └── userRoute.js
     ├── .gitignore
+    ├── package-lock.json
     ├── package.json
     └── server.js
 ```

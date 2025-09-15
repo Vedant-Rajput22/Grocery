@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useAppContext } from '../context/AppContext.jsx';
+import { useAppContext } from "../context/AppContext.jsx";
 import { assets } from "../assets/assets.js";
 import toast from "react-hot-toast";
+import axiosLib from "axios";
 
 const Cart = () => {
   const {
@@ -13,9 +14,11 @@ const Cart = () => {
     updateCartItem,
     navigate,
     getCartAmount,
-    axios,
+    axios,       
     user,
   } = useAppContext();
+
+  const http = axios ?? axiosLib;
 
   const [cartArray, setCartArray] = useState([]);
   const [addresses, setAddresses] = useState([]);
@@ -29,13 +32,13 @@ const Cart = () => {
         return toast.error("Please select an address");
       }
 
-      const itemsPayload = cartArray.map(item => ({
+      const itemsPayload = cartArray.map((item) => ({
         product: item._id,
         quantity: item.quantity,
       }));
 
       if (paymentOption === "COD") {
-        const { data } = await axios.post("/api/order/cod", {
+        const { data } = await http.post("/api/order/cod", {
           userId: user._id,
           items: itemsPayload,
           address: selectedAddress._id,
@@ -48,7 +51,7 @@ const Cart = () => {
           toast.error(data.message);
         }
       } else {
-        const { data } = await axios.post("/api/order/stripe", {
+        const { data } = await http.post("/api/order/stripe", {
           userId: user._id,
           items: itemsPayload,
           address: selectedAddress._id,
@@ -66,30 +69,26 @@ const Cart = () => {
   };
 
   const getCart = () => {
-    const tempArray = [];
+    const temp = [];
     for (const key in cartItems) {
-      const product = products.find(item => item._id === key);
+      const product = products.find((p) => p._id === key);
       if (product) {
-        // avoid mutating original product object
-        tempArray.push({
-          ...product,
-          quantity: cartItems[key],
-        });
+        
+        temp.push({ ...product, quantity: cartItems[key] });
       }
     }
-    setCartArray(tempArray);
+    setCartArray(temp);
   };
 
   const getUserAddress = async () => {
+    if (!user) return; 
     try {
-      const { data } = await axios.get("/api/address/get");
+      const { data } = await http.get("/api/address/get");
       if (data.success) {
-        setAddresses(data.addresses || []);
-        if (data.addresses?.length > 0) {
-          setSelectedAddress(data.addresses[0]);
-        } else {
-          toast.error(data.message || "No addresses found");
-        }
+        const list = data.addresses || [];
+        setAddresses(list);
+        setSelectedAddress(list[0] ?? null);
+        if (!list.length) toast.error(data.message || "No addresses found");
       }
     } catch (error) {
       toast.error(error?.response?.data?.message || error.message);
@@ -97,21 +96,18 @@ const Cart = () => {
   };
 
   useEffect(() => {
-    if (products.length > 0 && cartItems) {
-      getCart();
-    }
+    if (products.length > 0 && cartItems) getCart();
   }, [products, cartItems]);
 
   useEffect(() => {
-    if (user) {
-      getUserAddress();
-    }
+    getUserAddress();
   }, [user]);
 
   if (!(products.length > 0 && cartItems)) return null;
 
   return (
     <div className="flex flex-col md:flex-row mt-12">
+      {/* LEFT: Items */}
       <div className="flex-1 max-w-4xl">
         <h1 className="text-3xl font-medium mb-6">
           Shopping Cart{" "}
@@ -138,7 +134,6 @@ const Cart = () => {
                 className="cursor-pointer w-24 h-24 flex items-center justify-center border border-gray-300 rounded overflow-hidden"
                 aria-label={`Go to ${product.name}`}
               >
-                {/* FIX: use product.image (singular) and optional chaining */}
                 <img
                   className="max-w-full h-full object-cover"
                   src={product?.image?.[0] || ""}
@@ -155,7 +150,7 @@ const Cart = () => {
                   <div className="flex items-center">
                     <p className="mr-2">Qty:</p>
                     <select
-                      onChange={e => updateCartItem(product._id, Number(e.target.value))}
+                      onChange={(e) => updateCartItem(product._id, Number(e.target.value))}
                       value={cartItems[product._id]}
                       className="outline-none border border-gray-300 rounded px-2 py-1 bg-white"
                     >
@@ -206,6 +201,7 @@ const Cart = () => {
         </button>
       </div>
 
+      {/* RIGHT: Summary */}
       <div className="max-w-[360px] w-full bg-gray-100/40 p-5 max-md:mt-16 border border-gray-300/70">
         <h2 className="text-xl font-medium">Order Summary</h2>
         <hr className="border-gray-300 my-5" />
@@ -251,7 +247,7 @@ const Cart = () => {
 
           <p className="text-sm font-medium uppercase mt-6">Payment Method</p>
           <select
-            onChange={e => setPaymentOption(e.target.value)}
+            onChange={(e) => setPaymentOption(e.target.value)}
             value={paymentOption}
             className="w-full border border-gray-300 bg-white px-3 py-2 mt-2 outline-none rounded"
           >

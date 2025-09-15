@@ -42,6 +42,8 @@ a:visited {
   max-width: 10rem !important;
 }
 
-
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 
 
